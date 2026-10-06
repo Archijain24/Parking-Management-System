@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: auth-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  # NOTE: In production this MUST come from an environment variable / secret
+  # manager, not committed source. For this evaluation project it lives in
+  # application.yml so every service can share the exact same signing key.
+  secret: ${JWT_SECRET:parkezz-super-secret-signing-key-for-jwt-hs256-minimum-32-bytes}
+  expiration-ms: 3600000
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.parkezz.auth: INFO

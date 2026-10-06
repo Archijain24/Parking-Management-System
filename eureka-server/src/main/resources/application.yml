@@ -1,0 +1,24 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  client:
+    # This node is the registry itself, so it does not need to register
+    # with itself or fetch a registry from another node.
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  server:
+    # Disable self-preservation for a local dev/demo setup so that
+    # stale service instances are removed quickly and cleanly.
+    enable-self-preservation: false
+
+logging:
+  level:
+    com.netflix.eureka: WARN
+    com.netflix.discovery: WARN
